@@ -17,7 +17,7 @@ public class MedicineRequest {
     private String batchId;
 
     @NotNull(message = "Expiry date is required")
-    @Future(message = "Expiry date must be in the future")
+    @FutureOrPresent(message = "Expiry date must be today or in the future")
     private LocalDate expiryDate;
 
     @NotNull(message = "Unit is required")

@@ -2,7 +2,7 @@ package com.epharma.controller;
 
 import com.epharma.dto.LoginRequest;
 import com.epharma.dto.LoginResponse;
-import com.epharma.entity.User;
+import com.epharma.dto.RegisterRequest;
 import com.epharma.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -28,25 +28,8 @@ public class AuthController {
 
     @PostMapping("/register")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Map<String, String>> register(@RequestBody Map<String, String> request) {
-        String username = request.get("username");
-        String password = request.get("password");
-        String roleStr = request.getOrDefault("role", "PHARMACIST");
-
-        if (username == null || username.isBlank() || password == null || password.isBlank()) {
-            return ResponseEntity.badRequest()
-                    .body(Map.of("error", "Username and password are required"));
-        }
-
-        User.Role role;
-        try {
-            role = User.Role.valueOf(roleStr.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest()
-                    .body(Map.of("error", "Invalid role: " + roleStr));
-        }
-
-        authService.register(username, password, role);
+    public ResponseEntity<Map<String, String>> register(@Valid @RequestBody RegisterRequest request) {
+        authService.register(request.getUsername(), request.getPassword(), request.getRole());
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(Map.of("message", "User registered successfully"));
     }

@@ -82,8 +82,10 @@ public class MedicineService {
         if (medicine.getQuantity() <= medicine.getLowStockThreshold()) {
             notificationService.sendLowStockAlert(medicine);
         }
-        LocalDate expiryWarningDate = LocalDate.now().plusDays(EXPIRY_WARN_DAYS);
-        if (!medicine.getExpiryDate().isAfter(expiryWarningDate)) {
+        LocalDate today = LocalDate.now();
+        LocalDate expiryWarningDate = today.plusDays(EXPIRY_WARN_DAYS);
+        // Notify if expiring within the warning window but not already expired
+        if (!medicine.getExpiryDate().isBefore(today) && !medicine.getExpiryDate().isAfter(expiryWarningDate)) {
             notificationService.sendExpiryAlert(medicine);
         }
     }

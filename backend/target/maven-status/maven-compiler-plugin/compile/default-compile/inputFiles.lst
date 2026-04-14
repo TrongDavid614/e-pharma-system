@@ -14,6 +14,7 @@
 /home/runner/work/e-pharma-system/e-pharma-system/backend/src/main/java/com/epharma/dto/SaleItemRequest.java
 /home/runner/work/e-pharma-system/e-pharma-system/backend/src/main/java/com/epharma/repository/UserRepository.java
 /home/runner/work/e-pharma-system/e-pharma-system/backend/src/main/java/com/epharma/dto/LoginResponse.java
+/home/runner/work/e-pharma-system/e-pharma-system/backend/src/main/java/com/epharma/dto/RegisterRequest.java
 /home/runner/work/e-pharma-system/e-pharma-system/backend/src/main/java/com/epharma/security/JwtUtil.java
 /home/runner/work/e-pharma-system/e-pharma-system/backend/src/main/java/com/epharma/entity/Sale.java
 /home/runner/work/e-pharma-system/e-pharma-system/backend/src/main/java/com/epharma/websocket/WebSocketConfig.java
