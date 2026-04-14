@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/epharma
+    username: root
+    password: password
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+  main:
+    allow-bean-definition-overriding: true
+
+jwt:
+  secret: "epharma-secret-key-very-long-and-secure-for-jwt-signing-2024"
+  expiration: 86400000
