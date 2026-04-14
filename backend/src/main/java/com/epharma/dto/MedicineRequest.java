@@ -1,6 +1,7 @@
 package com.epharma.dto;
 
 import com.epharma.entity.Medicine;
+import com.epharma.service.MedicineService;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -32,5 +33,5 @@ public class MedicineRequest {
     private BigDecimal price;
 
     @Min(value = 1, message = "Low stock threshold must be at least 1")
-    private Integer lowStockThreshold = 10;
+    private Integer lowStockThreshold = MedicineService.DEFAULT_LOW_STOCK_THRESHOLD;
 }

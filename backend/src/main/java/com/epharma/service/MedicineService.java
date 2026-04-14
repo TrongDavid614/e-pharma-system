@@ -21,6 +21,7 @@ public class MedicineService {
     private final NotificationService notificationService;
 
     private static final int EXPIRY_WARN_DAYS = 30;
+    public static final int DEFAULT_LOW_STOCK_THRESHOLD = 10;
 
     public List<MedicineResponse> getAllMedicines() {
         return medicineRepository.findAll()
@@ -43,7 +44,9 @@ public class MedicineService {
                 .unit(request.getUnit())
                 .quantity(request.getQuantity())
                 .price(request.getPrice())
-                .lowStockThreshold(request.getLowStockThreshold() != null ? request.getLowStockThreshold() : 10)
+                .lowStockThreshold(request.getLowStockThreshold() != null
+                        ? request.getLowStockThreshold()
+                        : DEFAULT_LOW_STOCK_THRESHOLD)
                 .build();
 
         Medicine saved = medicineRepository.save(medicine);
